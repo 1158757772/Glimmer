@@ -14,11 +14,37 @@ const routes = [
   },
   {
     path: '/projecttype',
-    component: () => import('@/views/projecttype')
+    component: () => import('@/views/projecttype'),
+    children: [
+      {
+        path: '/projecttype/fp',
+        component: () => import('../views/projecttype/fp')
+      },
+      {
+        path: '/projecttype/jb',
+        component: () => import('../views/projecttype/jb')
+      },
+      {
+        path: '/projecttype/jy',
+        component: () => import('../views/projecttype/jy')
+      },
+      {
+        path: '/projecttype/qt',
+        component: () => import('../views/projecttype/qt')
+      },
+      {
+        path: '/projecttype/zr',
+        component: () => import('../views/projecttype/zr')
+      }
+    ]
   },
   {
     path: '/community',
     component: () => import('@/views/community')
+  },
+  {
+    path: '/C_search',
+    component: () => import('../views/C_search')
   },
   {
     path: '/onetoone',
