@@ -5,9 +5,9 @@
           <van-icon name="circle" size='20'/>
           <span>首页</span>
         </router-link>
-        <router-link to="/find" tag="li" active-class="active">
+        <router-link to="/projecttype" tag="li" active-class="active">
           <van-icon name="play-circle-o" size='20'/>
-          <span>发现</span>
+          <span>项目分类</span>
         </router-link>
         <router-link to="/center" tag="li" active-class="active">
           <van-icon name="smile-o"  size='20'/>

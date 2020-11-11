@@ -13,8 +13,20 @@ const routes = [
     component: () => import('@/views/center')
   },
   {
-    path: '/find',
-    component: () => import('@/views/find')
+    path: '/projecttype',
+    component: () => import('@/views/projecttype')
+  },
+  {
+    path: '/community',
+    component: () => import('@/views/community')
+  },
+  {
+    path: '/onetoone',
+    component: () => import('@/views/onetoone')
+  },
+  {
+    path: '/sport',
+    component: () => import('@/views/sport')
   },
   {
     path: '*',

@@ -1,7 +1,6 @@
 <template>
-  <div>
-      find
-  </div>
+<div>运动捐步</div>
+  
 </template>
 
 <script>
