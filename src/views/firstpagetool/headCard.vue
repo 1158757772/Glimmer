@@ -34,9 +34,9 @@
                <li><van-icon name="passed" size="16" /> {{profinance}}</li>
              </ul>
           </div>
-         
+
         </div>
-        
+
       </van-popup>
       <van-popup
         v-model="showv2"
@@ -69,93 +69,88 @@
 
 <script>
 import axios from 'axios'
-import { Popup } from 'vant';
-import Vue from 'vue';
-Vue.use(Popup);
-import { Button } from 'vant';
-Vue.use(Button);
-import { Icon } from 'vant';
-Vue.use(Icon);
-import { Tab, Tabs } from 'vant';
-Vue.use(Tab);
-Vue.use(Tabs);
-import { Checkbox, CheckboxGroup } from 'vant';
-Vue.use(Checkbox);
-Vue.use(CheckboxGroup);
-import { Toast } from 'vant';
+import { Popup, Button, Icon, Tab, Tabs, Checkbox, CheckboxGroup, Toast } from 'vant'
+import Vue from 'vue'
 
-Vue.use(Toast);
+Vue.use(Popup)
+Vue.use(Button)
+Vue.use(Icon)
+Vue.use(Tab)
+Vue.use(Tabs)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+
+Vue.use(Toast)
 export default {
- data(){
-    return{
+  data () {
+    return {
       result: ['a'],
-      datalist:[],
+      datalist: [],
       show: false,
-      showv2:false,
-      popuptitle:"",
-      popupaccept:"",
-      popupdo:"",
-      startTime:"",
-      proinfo:"",
-      protime:"",
-      profinance:"",
-      giveimg:"",
-      givecount:1,
-      giveinfo:"",
+      showv2: false,
+      popuptitle: '',
+      popupaccept: '',
+      popupdo: '',
+      startTime: '',
+      proinfo: '',
+      protime: '',
+      profinance: '',
+      giveimg: '',
+      givecount: 1,
+      giveinfo: ''
     }
   },
- mounted () {
-    axios.get("https://scdn.gongyi.qq.com/json_data/cfgsets/gycfg_723_v1.json").then(res=>{
-      this.datalist=res.data.projects
+  mounted () {
+    axios.get('https://scdn.gongyi.qq.com/json_data/cfgsets/gycfg_723_v1.json').then(res => {
+      this.datalist = res.data.projects
     })
   },
   methods: {
-    onClick(num,title){
-        this.givecount=num
+    onClick (num, title) {
+      this.givecount = num
     },
-    showPopup(id) {
-      this.show = true;
-     const arr=id.toString().split("")
-     const len=arr.length-1
-     let idResult
-     if(arr[len-1]==0){
-       idResult=[arr[len]].join("")
-     }else{
-       idResult=[arr[len-1],arr[len]].join("")
-     }
-     
-       axios.get(`https://scdn.gongyi.qq.com/json_data/data_detail/${idResult}/detail.${id}.json`).then(res=>{
-         console.log(res.data);
-      this.popuptitle=res.data.base.title
-      this.popupaccept=res.data.base.fundName
-      this.popupdo=res.data.base.eOrgName
-      this.startTime=res.data.base.startTime
-      this.giveinfo=res.data.base.ext_donate.nm
-      if(res.data.base.implement_res&&res.data.base.count){
-        this.proinfo=res.data.base.implement_res
-        this.protime="3个月内共进展"+res.data.base.count.process+"次"
-        this.profinance="2019年至今共进行"+res.data.base.count.finance+"次财务披露"
-      }else{
-        this.proinfo="已提交善款执行预算"
-        this.protime="已提交项目执行计划"
-        this.profinance="未进入执行披露期"
+    showPopup (id) {
+      this.show = true
+      const arr = id.toString().split('')
+      const len = arr.length - 1
+      let idResult
+      if (arr[len - 1] === 0) {
+        idResult = [arr[len]].join('')
+      } else {
+        idResult = [arr[(len - 1)], arr[len]].join('')
       }
-      
-      
-      this.giveimg=res.data.base.listImg+"/200"
-    })
+
+      axios.get(`https://scdn.gongyi.qq.com/json_data/data_detail/${idResult}/detail.${id}.json`).then(res => {
+        console.log(res.data)
+        this.popuptitle = res.data.base.title
+        this.popupaccept = res.data.base.fundName
+        this.popupdo = res.data.base.eOrgName
+        this.startTime = res.data.base.startTime
+        this.giveinfo = res.data.base.ext_donate.nm
+        if (res.data.base.implement_res && res.data.base.count) {
+          this.proinfo = res.data.base.implement_res
+          this.protime = '3个月内共进展' + res.data.base.count.process + '次'
+          this.profinance = '2019年至今共进行' + res.data.base.count.finance + '次财务披露'
+        } else {
+          this.proinfo = '已提交善款执行预算'
+          this.protime = '已提交项目执行计划'
+          this.profinance = '未进入执行披露期'
+        }
+
+        this.giveimg = res.data.base.listImg + '/200'
+      })
     },
-    give(){
+    give () {
       this.show = false
-       this.showv2 = true;
-      console.log(this.giveimg);
+      this.showv2 = true
+      console.log(this.giveimg)
     },
-    subgive(){
-      if(!(this.result.indexOf('a')>=0)){
+    subgive () {
+      if (!(this.result.indexOf('a') >= 0)) {
         Toast('您需要同意并勾选《用户捐赠协议》')
       }
     }
-  },
+  }
 }
 </script>
 
@@ -192,7 +187,7 @@ export default {
     position: absolute;
     bottom: 10%;
     left: 2.5%;
-    
+
 }
 .headcard_bar{
     float: left;
@@ -201,7 +196,7 @@ export default {
     margin:1%;
     background: white;
     border-radius: 10px;
-    
+
     background-image: url('http://mat1.gtimg.com/gongyi/home/index-banner-item-bg.png');
     .target{
       font-size: 16px;
@@ -212,9 +207,9 @@ export default {
     .wording{
       font-size: 14px;
       padding: 2px;
-      white-space: nowrap;  
-      overflow: hidden;               
-      text-overflow: ellipsis; 
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 }
 .van-popup--center{
@@ -291,9 +286,9 @@ export default {
         }
       }
     }
-    
+
   }
-  
+
 }
 .givebar{
   width: 90%;

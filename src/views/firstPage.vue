@@ -7,7 +7,7 @@
     />
     <div class="round"></div>
     <head-card>
-      
+
     </head-card>
     <head-nav>
     </head-nav>
@@ -15,20 +15,19 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import { Search } from 'vant';
-import headCard from './firstpagetool/headCard';
-import headNav from './firstpagetool/headNav';
-Vue.use(Search);
+import Vue from 'vue'
+import { Search } from 'vant'
+import headCard from './firstpagetool/headCard'
+import headNav from './firstpagetool/headNav'
+Vue.use(Search)
 export default {
-  
- 
-  methods:{
-    ToSearch(){
+
+  methods: {
+    ToSearch () {
       this.$router.push('/search')
     }
   },
-  components :{
+  components: {
     headCard,
     headNav
   }
@@ -47,5 +46,3 @@ export default {
   z-index: -99;
 }
 </style>>
-
-
