@@ -14,8 +14,13 @@ module.exports = {
         pathRewrite: {
           '^/kerwin': '' // 路径重写
         }
+      },
+      '/cgi-bin': {
+        target: 'https://ssl.gongyi.qq.com',
+        changeOrigin: true
       }
+      //
     }
   },
-  lintOnSave: true
+  lintOnSave: false
 }

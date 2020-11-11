@@ -28,29 +28,29 @@
 
 <script>
 import axios from 'axios'
-import { Popup } from 'vant';
-import Vue from 'vue';
-Vue.use(Popup);
-import { Button } from 'vant';
-Vue.use(Button);
+import { Popup, Button } from 'vant'
+import Vue from 'vue'
+
+Vue.use(Popup)
+Vue.use(Button)
 export default {
- data(){
-    return{
-      datalist:[],
-      show: false,
+  data () {
+    return {
+      datalist: [],
+      show: false
     }
   },
- mounted () {
-    axios.get("https://scdn.gongyi.qq.com/json_data/cfgsets/gycfg_723_v1.json").then(res=>{
-      this.datalist=res.data.projects
+  mounted () {
+    axios.get('https://scdn.gongyi.qq.com/json_data/cfgsets/gycfg_723_v1.json').then(res => {
+      this.datalist = res.data.projects
     })
   },
   methods: {
-    showPopup(id) {
-      this.show = true;
+    showPopup (id) {
+      this.show = true
       console.log(id)
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -87,7 +87,7 @@ export default {
     position: absolute;
     bottom: 10%;
     left: 2.5%;
-    
+
 }
 .headcard_bar{
     float: left;
@@ -96,7 +96,7 @@ export default {
     margin:1%;
     background: white;
     border-radius: 10px;
-    
+
     background-image: url('http://mat1.gtimg.com/gongyi/home/index-banner-item-bg.png');
     .target{
       font-size: 16px;
