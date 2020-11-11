@@ -9,7 +9,8 @@
     <head-card>
       
     </head-card>
-      
+    <head-nav>
+    </head-nav>
   </div>
 </template>
 
@@ -17,6 +18,7 @@
 import Vue from 'vue';
 import { Search } from 'vant';
 import headCard from './firstpagetool/headCard';
+import headNav from './firstpagetool/headNav';
 Vue.use(Search);
 export default {
   
@@ -27,7 +29,8 @@ export default {
     }
   },
   components :{
-    headCard
+    headCard,
+    headNav
   }
 }
 
