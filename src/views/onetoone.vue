@@ -39,7 +39,7 @@
         <div class="longevity">
           <h3>寻找老乡</h3>
           <onetooneSwiper  myname='old' v-if = "oldList">
-            <div class="swiper-slide"  v-for="item in oldList" :key="item.plan_id">
+            <div class="swiper-slide"  v-for="item in oldList" :key="item.plan_id" @click="handleClick(item.projid)">
               <dl class="person">
                 <dt>
                   <img v-if="item.head != ''" :src="item.head">
@@ -148,7 +148,7 @@ export default {
         })
     },
     handleClick (id) {
-      console.log(id)
+      // console.log(id)
 
       this.$router.push(`/onetooneDetails/${id}`)
     }
@@ -169,7 +169,7 @@ export default {
       ]
     })
       .then(res => {
-      // console.log(res.data.data.list)
+        // console.log(res.data.data.list)
         this.list = res.data.data.list
       })
     axios.get('/cgi-bin/Search1v1.fcgi?pt=1&p=1&limit=5')
