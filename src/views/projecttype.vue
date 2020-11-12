@@ -1,7 +1,7 @@
 <template>
   <div>
-      <van-search
-      v-model="value"
+       <van-search
+        v-model="value"
         shape="round"
         background="fff"
         placeholder="查询公益项目"
@@ -10,9 +10,8 @@
         >
 
       </van-search>
-      <div class="navbar">
+      <!--<div class="navbar">
       <ul >
-      <!-- 3. 声明式导航 -->
         <router-link to="/projecttype/jb" tag="li" active-class="C_active">
           <i class="iconfont">&#xe61e;</i>
           <span>疾病救助</span>
@@ -34,7 +33,7 @@
           <span>其他</span>
         </router-link>
     </ul>
-    </div>
+    </div> -->
       <router-view></router-view>
   </div>
 </template>
@@ -43,7 +42,6 @@
 
 import Vue from 'vue'
 import { Search, Tab, Tabs } from 'vant'
-import '../assets/icon/iconfont.css'
 
 Vue.use(Search).use(Tabs).use(Tab)
 export default {
@@ -71,35 +69,4 @@ export default {
     border-bottom: #c60 2px solid;
   }
 
-<<<<<<< HEAD
-=======
-  .navbar{
-    position: fixed;
-    z-index: 100;
-    top: 54px;
-    left:0;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    background:white;
-    text-align: center;
-    position: sticky; //粘性定位
-    top: 0px;
-    ul{
-      display: flex;
-      padding-bottom: 4px;
-      li{
-        flex:1;
-        display: flex;
-        flex-direction: column;
-        i{
-          font-size:20px;
-        }
-        span{
-          font-size:12px;
-        }
-      }
-    }
-  }
->>>>>>> c351be1c8136f9910379616b651871763c3d5c4b
 </style>
