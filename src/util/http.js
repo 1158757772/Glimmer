@@ -3,11 +3,8 @@ import axios from 'axios'
 import { Toast } from 'vant'
 
 const http = axios.create({
-  baseURL: 'https://m.maizuo.com', // 基准url
+  baseURL: 'https://ssl.gongyi.qq.com', // 基准url
   timeout: 10000,
-  headers: {
-    'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"1596502176387264316178433","bc":"310100"}'
-  }
 })
 // 拦截器 intercetptor
 
