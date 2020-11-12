@@ -1,5 +1,5 @@
 <template>
-    <div class="swiper-container">
+    <div class="swiper-container" :class="myname">
         <div class="swiper-wrapper">
             <slot></slot>
         </div>
@@ -8,13 +8,13 @@
 
 <script>
 import Swiper from 'swiper'
-import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper-bundle.css'
+import 'swiper/swiper-bundle'
 
 export default {
+  props: ['myname'],
   mounted () {
-    new Swiper('.swiper-container', {
-      spaceBetween: 30
-    })
+    new Swiper('.' + this.myname)
   }
 }
 </script>
