@@ -8,8 +8,21 @@
         @focus="focusfns"
         ref="h"
         >
-
       </van-search>
+      <van-tabs v-model="active" swipeable sticky>
+        <van-tab
+        v-for="item in title"
+        :key="item.id"
+        :to="/projecttype/+item.dress"
+        >
+        <template #title>
+          <van-icon
+            class="icon"
+            :name="item.img"
+            size=25
+            />{{item.name}}</template>
+        </van-tab>
+      </van-tabs>
       <!--<div class="navbar">
       <ul >
         <router-link to="/projecttype/jb" tag="li" active-class="C_active">
@@ -39,15 +52,48 @@
 </template>
 
 <script>
-
 import Vue from 'vue'
-import { Search, Tab, Tabs } from 'vant'
-
-Vue.use(Search).use(Tabs).use(Tab)
+import { Search, Tab, Tabs, Icon } from 'vant'
+Vue.use(Search).use(Tabs).use(Tab).use(Icon)
 export default {
   data () {
     return {
-      value: ''
+      value: '',
+      title: [
+        {
+          name: '疾病救助',
+          id: 1,
+          dress: 'jb',
+          img: 'gold-coin-o'
+
+        },
+        {
+          name: '扶贫救灾',
+          id: 2,
+          dress: 'fp',
+          img: 'flag-o'
+        },
+        {
+          name: '教育助学',
+          id: 3,
+          dress: 'jy',
+          img: 'description'
+        },
+        {
+          name: '自然保护',
+          id: 4,
+          dress: 'zr',
+          img: 'flower-o'
+
+        },
+        {
+          name: '其他',
+          id: 5,
+          dress: 'qt',
+          img: 'setting-o'
+        }
+
+      ]
     }
   },
   methods: {
@@ -67,6 +113,13 @@ export default {
   .C_active{
     color:#c60;
     border-bottom: #c60 2px solid;
+
+  }
+  .icon{
+    display: flex;
+    flex-direction :column;
+    text-align: center;
+
   }
 
 </style>
