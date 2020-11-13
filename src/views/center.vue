@@ -16,7 +16,9 @@
                 <span>&nbsp;爱心新秀</span>
               </h4>
               <div class="top3_1_1">
-              ______________________
+              <span>
+                ______________________________
+              </span>
               </div>
               <div class="top3_1_2">
                 <span>LV.0</span>&nbsp;
@@ -38,10 +40,12 @@
       </div>
     </div>
     <div class="cen">
-      <van-grid :column-num="3" square :border="false">
-        <van-grid-item v-for="value in looplist" :key="value.id" :icon="value.icon"
-         :text="value.title" @click="toOne( value.title )"/>
-      </van-grid>
+      <div>
+        <van-grid :column-num="3" square :border="false">
+          <van-grid-item v-for="value in looplist" :key="value.id"
+          :icon="value.icon" :text="value.title" @click="toOne()"/>
+        </van-grid>
+      </div>
     </div>
     <div class="bot">
       <div class="bot_1">
@@ -49,13 +53,11 @@
         <span>0/8</span>
       </div>
       <div class="bot_2">
-          <van-cell is-link @click="showPopup">
-            <van-grid :column-num="3" square :border="false">
+          <van-grid :column-num="3" square :border="false">
             <van-grid-item v-for="value in looplist" :key="value.id"
-            :text="value.title2" :icon="value.img"/>
-            </van-grid>
-          </van-cell>
-          <van-popup v-model="show2">
+            :text="value.title2" :icon="value.img" @click="showPopup1"/>
+          </van-grid>
+          <van-popup v-model="show2" closeable>
             <div class="tu">
               <img src="../../public/images/500.jpg" alt="">
               <span>您还没有任何❤成就</span>
@@ -141,13 +143,6 @@ export default {
           title2: '月捐新贵',
           img: 'https://mat1.gtimg.com/gongyi/m/wx/love_account/badge_disable_mini_yjxg.png',
           title: '企业回馈'
-        },
-        {
-          id: '9',
-          icon: '',
-          title2: '',
-          img: '',
-          title: ''
         }
       ]
     }
@@ -159,7 +154,7 @@ export default {
     btnClick () {
       this.show = true
     },
-    showPopup () {
+    showPopup1 () {
       this.show2 = true
     },
     handleOne () {
@@ -184,6 +179,10 @@ export default {
       height: 100%;
     }
     .top{
+      span,p{
+        font-size: 12px;
+        color: #aaa;
+      }
       position: relative;
       top: -120px;
       margin: 0 16px;
@@ -213,6 +212,7 @@ export default {
       }
     }
     .cen{
+      background: #fff;
       position: relative;
       top: -120px;
       width: 327px;
@@ -228,6 +228,10 @@ export default {
         display: flex;
         justify-content: space-between;
         padding: 10px;
+        span{
+          font-size: 12px;
+          color: #aaa;
+        }
       }
     }
     .btn{
