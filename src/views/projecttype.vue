@@ -42,6 +42,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { Search, Tab, Tabs, Icon } from 'vant'
+// import LoginVue from '../../../1105/上午/test2005/src/views/Login.vue'
 Vue.use(Search).use(Tabs).use(Tab).use(Icon)
 export default {
   data () {
@@ -99,16 +100,20 @@ export default {
         this.list = res.data[this.myname]
       })
     }
-  }
-  /* mounted () {
+  },
+  mounted () {
+    axios.get('/json/C_json.json').then(res => {
+      var myid = this.$route.params.myid
+      if (this.$route.params.myid === myid) {}
+      this.list = res.data[myid]
+    })
     var arr = ['jb', 'fp', 'jy', 'zr', 'qt']
     console.log(this.$route.params.myid)
-    active = indexOf(arr, this.$route.params.myid)
-
+    this.active = indexOf(arr, this.$route.params.myid)
     function indexOf (arr, item) {
       return arr.indexOf(item)
     }
-  } */
+  }
 }
 </script>
 

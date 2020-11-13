@@ -22,7 +22,12 @@ const routes = [
     children: [{
       path: '/projecttype/detail/:myid', // 6-动态路由
       component: () => import('@/views/detail')
-    }]
+    },
+    {
+      path: '/projecttype',
+      redirect: '/projecttype/detail/jz' // 重定向
+    }
+    ]
     /* [
       {
         path: '/projecttype/fp',

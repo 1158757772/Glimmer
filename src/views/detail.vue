@@ -26,17 +26,17 @@
                   :immediate-check="false"
                   finished-text="我是有底线的"
                   >
-                  <van-cell v-for="data in datalist" :key="data.fundId" @click="hc" class="cs0">
+                  <van-cell v-for="data in datalist" :key="data.fundId" @click="hc(data)" class="cs0">
                     <div class="cs1">
                       <img :src="data.listImg | imgsrc" alt="" >
                     </div>
                     <div class="cs2">
                     <p>{{data.title}}</p>
                     <p>
-                      1111111
-                      <!-- <span>{{data.objTagName}}</span>
+
+                      <span>{{data.objTagName}}</span>
                       <span>{{data.cateTagName}}</span>
-                      <span>{{data.cateName}}</span> -->
+                      <span>{{data.cateName}}</span>
                     </p>
                     <p>{{data.summary}}</p>
                     </div>
@@ -66,14 +66,13 @@ export default {
       datalist: [],
       loading: false,
       finished: false,
-      handleC: [],
-      total: 0
+      handleC: []
     }
   },
   methods: {
 
-    hc () {
-      console.log(this.C_id)
+    hc (data) {
+      this.$router.push('lovelovedetail/' + data.id + '/home')
     },
     C_Load () {
       if (this.datalist.length === 0) {
@@ -84,11 +83,24 @@ export default {
         this.loading = false
         return
       }
+      let ptype = 'ptype'
+
+      if (this.current !== 0) {
+        ptype = 'ptype'
+      } else {
+        ptype = 'catetag'
+      }
 
       this.current++
+
       axios.get(
-        `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&ptype=${this.C_id}`
+        `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&${ptype}=${this.C_id}`
       ).then(res => {
+        if (res.data.data.projs == null) {
+          console.log(1111111)
+          this.finished = true
+          return
+        }
         this.datalist = [...this.datalist, ...res.data.data.projs]
         // loading改会false
         this.loading = false
@@ -98,8 +110,9 @@ export default {
       console.log(item, 1111)
       this.current = 0
       this.C_id = item.id
+      console.log(this.C_id)
       this.op = index
-      console.log(this.C_id, this.current)
+      console.log(index)
       let ptype = 'ptype'
       if (index === 0) {
         ptype = 'ptype'
@@ -109,8 +122,8 @@ export default {
       axios.get(
         `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&${ptype}=${this.C_id}`
       ).then(res => {
-        this.datalist = []
         this.datalist = [this.datalist, ...res.data.data.projs]
+
         // loading改会false
         this.loading = false
         // this.datalist = [...this.datalist, ...res.data.data.projs]
@@ -121,14 +134,18 @@ export default {
   mounted () {
     axios.get('/json/C_json.json').then(res => {
       var myid = this.$route.params.myid
-      if (this.$route.params.myid === myid) {}
-      this.list = res.data[myid]
+
+      if (this.$route.params.myid === myid) {
+        this.list = res.data[myid]
+        console.log(this.$route.params.myid, res.data)
+      }
     })
     axios.get(
       `/cgi-bin/gywcom_gy_filter?page=0&pcnt=6&ranktype=time&pstatus=active&ptype=${this.C_id}`
 
     ).then(res => {
       this.datalist = [...this.datalist, ...res.data.data.projs]
+
       // loading改会false
       this.loading = false
     })
