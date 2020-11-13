@@ -33,6 +33,14 @@ const routes = [
     component: () => import('@/views/onetoone/onetooneDetails')
   },
   {
+    path: '/titleDetails',
+    component: () => import('@/views/onetoone/titleDetails')
+  },
+  {
+    path: '/fitrate',
+    component: () => import('@/views/onetoone/fitrate')
+  },
+  {
     path: '*',
     redirect: '/firstPage' // 2. 重定向
   }

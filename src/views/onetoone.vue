@@ -7,7 +7,10 @@
       </header>
       <main>
         <div class="longevity">
-          <h3>本周寿星</h3>
+          <h3 @click="titleClick">
+            本周寿星
+            <van-icon class="icon" name="arrow" />
+          </h3>
           <onetooneSwiper  myname='young' v-if="longevityList">
             <div class="swiper-slide" v-for="item in longevityList" :key="item.plan_id" @click="handleClick(item.projid)">
               <dl class="person">
@@ -37,7 +40,10 @@
           </onetooneSwiper>
         </div>
         <div class="longevity">
-          <h3>寻找老乡</h3>
+          <h3 @click="titleClick">
+            寻找老乡
+            <van-icon class="icon" name="arrow" />
+          </h3>
           <onetooneSwiper  myname='old' v-if = "oldList">
             <div class="swiper-slide"  v-for="item in oldList" :key="item.plan_id" @click="handleClick(item.projid)">
               <dl class="person">
@@ -89,9 +95,9 @@ import onetooneSwiper from './onetoone/onetooneSwiper'
 import axios from 'axios'
 import Vue from 'vue'
 
-import { List, Cell } from 'vant'
+import { List, Cell, Icon } from 'vant'
 
-Vue.use(List).use(Cell)
+Vue.use(List).use(Cell).use(Icon)
 
 Vue.filter('imgFilter', (img) => {
   return img + '/100'
@@ -151,6 +157,9 @@ export default {
       // console.log(id)
 
       this.$router.push(`/onetooneDetails/${id}`)
+    },
+    titleClick () {
+      this.$router.push('/titleDetails')
     }
   },
   mounted () {
@@ -212,6 +221,9 @@ export default {
   }
   main{
     flex: 1;
+  }
+  .icon{
+    vertical-align: middle;
   }
   .longevity{
     padding: 3%;
