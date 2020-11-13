@@ -3,7 +3,7 @@
           <div class="swiper-wrapper">
               <slot></slot>
           </div>
-      <div  :class="'swiper-pagination'+title" class="swiper-pagination" v-if="page"></div>
+          <div  :class="'swiper-pagination'+title" class="swiper-pagination" v-if="page"></div>
   </div>
 </template>
 <script>
@@ -13,9 +13,6 @@ import 'swiper/swiper-bundle.css'
 // css在哪？？？
 export default {
   props: {
-    perview: {
-      type: Number
-    },
     title: {
       type: String
     },
@@ -26,23 +23,20 @@ export default {
   // 每次更新都会重新执行
   mounted () {
     new Swiper('.' + this.title, {
-      slidesPerView: this.perview,
-      spaceBetween: 10,
-      freeMode: true,
+      loop: false,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: true
+      },
       pagination: {
         el: '.swiper-pagination' + this.title,
         clickable: true,
         dynamicBullets: true
       }
-      // direction:"vertical"
     })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.swiper-container-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic{
-  left: 90%;
-
-}
 </style>

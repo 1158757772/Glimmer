@@ -25,7 +25,7 @@
       <div slot="head" class="text" >今日关注</div>
       <img slot="showimg" class="showimg" src="http://imgcdn.gongyi.qq.com/gongyi/6a335576a1d92cb03e2e1b61125ccdf77a311518efb18c327c36225779262fd6e41790e34072c930/500" @click="goid(203500)"/>
       <div slot="showtext" class="showtext"><h3>丰富心智障碍者的生活</h3><h4>丰富心智障碍者的生活</h4></div>
-      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small">社区融合</van-button>
+      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="goid(203500)">社区融合</van-button>
       <ul slot="showlistgroup">
         <li @click="goid(217030)">
            <dl class="whole-dl">
@@ -54,7 +54,7 @@
       <img slot="showimg" class="showimg" src="//imgcdn.gongyi.qq.com/gongyi/24cafafaef632db013b36dc11d2364934195e0dad5e768427bd47e5312256cb5/500" @click="goid(200996)"
       />
       <div slot="showtext" class="showtext"><h3>把陪伴带给本该无忧的她</h3><h4>失依女童陪伴成长</h4></div>
-      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small">生活支持</van-button>
+      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="goid(200996)">生活支持</van-button>
       <ul slot="showlistgroup">
         <li @click="goid(205242)">
            <dl class="whole-dl">
@@ -82,7 +82,7 @@
       <div slot="head" class="text" >扶贫救灾：点燃生活希望</div>
       <img slot="showimg" class="showimg" src="http://imgcdn.gongyi.qq.com/gongyi/81d83fd6da62e247b0d175a4177a3fb16f5d74e45a46e03d76ba8368cdf64cb6/500" @click="goid(32123)"/>
       <div slot="showtext" class="showtext"><h3>大山贫困老人的爱心回礼</h3><h4>外婆的礼物</h4></div>
-      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small">创业养老</van-button>
+      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="goid(32123)">创业养老</van-button>
       <ul slot="showlistgroup">
         <li @click="goid(35620)">
            <dl class="whole-dl">
@@ -110,7 +110,7 @@
       <div slot="head" class="text" >疾病救助：帮他们恢复健康</div>
       <img slot="showimg" class="showimg" src="http://imgcdn.gongyi.qq.com/gongyi/86d68d09d4885c032b3d68ff82ad25d13a35ba075a4ae30ab63a5c001c74f342/500" @click="goid(364)"/>
       <div slot="showtext" class="showtext"><h3>重新回归有声世界</h3><h4>爱的分贝聋儿救助</h4></div>
-      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small">康复训练</van-button>
+      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="goid(364)">康复训练</van-button>
       <ul slot="showlistgroup">
         <li @click="goid(223804)">
            <dl class="whole-dl">
@@ -137,9 +137,9 @@
       <div slot="head" class="text" >环境保护：守护绿水青山</div>
       <img slot="showimg" class="showimg" src="http://imgcdn.gongyi.qq.com/gongyi/6a335576a1d92cb04bafe4f19bbe5442844079a385e2f62b44e0cdf51dd77c1cdc4a29a2aaeec9a286fba5d68f763c05be928eaceea3382f78ccbafb501c816d/500" @click="goid(10306)"/>
       <div slot="showtext" class="showtext"><h3>为濒危水鸟建立保护基地</h3><h4>守护栖息地任鸟飞</h4></div>
-      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small">保护濒危</van-button>
+      <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="goid(10306)">保护濒危</van-button>
       <ul slot="showlistgroup">
-        <li @click="goid(1000018338)">
+        <li @click="goid(1000018338,'sub_data_detail')">
            <dl class="whole-dl">
           <dt class="img_dt"><img src="http://imgcdn.gongyi.qq.com/gongyi/6a335576a1d92cb0ab5dc011c82df40ba325a0b534197a6810313555a0951c4fdcaf3c917b4c9ef6/500" alt=""></dt>
           <dd class="text_dd">
@@ -149,7 +149,7 @@
           </dd>
           </dl>
         </li>
-        <li @click="goid(1000021650)">
+        <li @click="goid(1000021650,'sub_data_detail')">
            <dl class="whole-dl">
           <dt class="img_dt"><img src="http://imgcdn.gongyi.qq.com/gongyi/567dd0a80ef33937052462ff5b8ee41adc8d9c612f1e946909e80b82ffb073c1/500" alt=""></dt>
           <dd class="text_dd">
@@ -192,8 +192,12 @@ export default {
     ToSearch () {
       this.$router.push('/search')
     },
-    goid (id) {
-      console.log(id)
+    goid (id, type) {
+      if (type) {
+        this.$router.push('lovelovedetail/' + id + '/' + type)
+      } else {
+        this.$router.push('lovelovedetail/' + id + '/' + 'data_detail')
+      }
     }
   },
   components: {
