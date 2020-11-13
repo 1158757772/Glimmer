@@ -13,6 +13,10 @@ const routes = [
     component: () => import('@/views/center')
   },
   {
+    path: '/lovelovedetail/:Id/:Type',
+    component: () => import('@/views/lovelovedetail')
+  },
+  {
     path: '/center/cen_1',
     component: () => import('../views/center/cen_1')
   },

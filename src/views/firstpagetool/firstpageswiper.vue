@@ -1,6 +1,6 @@
 <template>
   <div>
-   <g-swiper :perview="2" title="project" v-if="list.length">
+   <g-swiper :perview="2" title="project" v-if="list.length" :atplay="1000">
         <div class="swiper-slide fistnav" v-for="item in list" :key="item.id" @click="godetail(item.id)">
           <dl>
             <dt><img :src="'http:'+item.img" alt=""></dt>
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     godetail (id) {
-      console.log(id)
+      this.$router.push('lovelovedetail/' + id + '/data_detail')
     }
   }
 }

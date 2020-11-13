@@ -5,7 +5,7 @@
       <router-link slot="right" class="run"  to="/sport">全部<van-icon name="arrow" /></router-link>
   </head-h>
   <dl-list>
-      <router-link to="/sport" tag="li" class="whole-li" v-for="item in list" :key="item.pid">
+      <router-link :to="'/lovelovedetail/'+item.pid+'/data_detail'" tag="li" class="whole-li" v-for="item in list" :key="item.pid">
       <dl class="whole-dl">
           <dt class="img_dt"><img :src="'http:'+item.listimg+'/200'" alt=""></dt>
           <dd class="text_dd">

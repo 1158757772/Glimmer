@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Toast } from 'vant'
 
 const http = axios.create({
-  baseURL: 'https://ssl.gongyi.qq.com', // 基准url
+  baseURL: '/json_data', // 基准url
   timeout: 10000
 })
 // 拦截器 intercetptor

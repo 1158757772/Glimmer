@@ -7,13 +7,16 @@
         @click-left="onClickLeft"
         />
         <ul>
-            <li>以帮助<br>
-                0次</li>
-            <li>资助金额<br>
-                0元</li>
+          <li>以帮助<br>
+            0次</li>
+          <li>资助金额<br>
+            0元</li>
         </ul>
-        <div class="btn">
-            <van-button round hairline type="info" size="small" @click="handleRight" color="red">返回首页</van-button>
+        <div class="cen">
+          <img src="../../../public/images/400.jpg" alt="">
+        </div>
+        <div class="bot">
+           <van-button round hairline type="info" size="large" @click="handleRight" color="red">返回首页</van-button>
         </div>
     </div>
 </template>
@@ -52,11 +55,21 @@ export default {
             flex: 1;
         }
     }
-    .btn{
+    .cen{
         width: 100px;
         position: relative;
-        top: 200px;
-        left: 148px;
-
+        top: 100px;
+        left: 75px;
+        display: flex;
+        flex-direction: column;
+        img{
+          width: 200px;
+          height: 200px;
+          text-align: center;
+        }
+    }
+    .bot{
+      position: relative;
+      top: 115px;
     }
 </style>
