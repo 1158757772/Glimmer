@@ -19,7 +19,11 @@ const routes = [
   {
     path: '/projecttype',
     component: () => import('@/views/projecttype'),
-    children: [
+    children: [{
+      path: '/projecttype/detail/:myid', // 6-动态路由
+      component: () => import('@/views/detail')
+    }]
+    /* [
       {
         path: '/projecttype/fp',
         component: () => import('../views/projecttype/fp')
@@ -40,7 +44,7 @@ const routes = [
         path: '/projecttype/zr',
         component: () => import('../views/projecttype/zr')
       }
-    ]
+    ] */
   },
   {
     path: '/community',
