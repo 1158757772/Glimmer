@@ -9,7 +9,8 @@
             <van-grid-item
             v-for="(item,index) in list"
             :key="item.id"
-            :class="current===index?'C_active':'' " @click="handleClick(item,index)"
+            :class="op===index?'C_active':'' "
+            @click="handleClick(item,index)"
             >
             {{item.name}}
             </van-grid-item>
@@ -17,20 +18,30 @@
         </van-grid>
         <div style="text-align:center;">
             <van-icon :name=" ishidden?'arrow-down':'arrow-up'" @click="ishidden=!ishidden" />
-
         </div>
           <div v-if="datalist.length">
-        <van-list  @load="C_Load"
-            v-model="loading"
-        :finished="finished"
-        :immediate-check="false"
-        finished-text="我是有底线的"
-        >
-            <van-cell v-for="data in datalist" :key="data.fundId" @click="hc">
-              <img :src="data.listImg | imgsrc" alt="">
-
-            </van-cell>
-        </van-list>
+              <van-list  @load="C_Load"
+                  v-model="loading"
+                  :finished="finished"
+                  :immediate-check="false"
+                  finished-text="我是有底线的"
+                  >
+                  <van-cell v-for="data in datalist" :key="data.fundId" @click="hc" class="cs0">
+                    <div class="cs1">
+                      <img :src="data.listImg | imgsrc" alt="" >
+                    </div>
+                    <div class="cs2">
+                    <p>{{data.title}}</p>
+                    <p>
+                      1111111
+                      <!-- <span>{{data.objTagName}}</span>
+                      <span>{{data.cateTagName}}</span>
+                      <span>{{data.cateName}}</span> -->
+                    </p>
+                    <p>{{data.summary}}</p>
+                    </div>
+                  </van-cell>
+              </van-list>
         </div>
     </div>
 </template>
@@ -45,6 +56,7 @@ Vue.filter('imgsrc', (img) => {
 export default {
   data () {
     return {
+      op: 0,
       list: [],
       current: 0,
       ishidden: true,
@@ -54,7 +66,7 @@ export default {
       datalist: [],
       loading: false,
       finished: false,
-
+      handleC: [],
       total: 0
     }
   },
@@ -74,53 +86,48 @@ export default {
       }
 
       this.current++
-      console.log(this.current, this.C_id, 'szh')
       axios.get(
         `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&ptype=${this.C_id}`
       ).then(res => {
-        console.log(res.data, 444444444)
         this.datalist = [...this.datalist, ...res.data.data.projs]
         // loading改会false
         this.loading = false
       })
     },
-    handleClick (item) {
-      this.C_id = item.id
+    handleClick (item, index) {
+      console.log(item, 1111)
       this.current = 0
+      this.C_id = item.id
+      this.op = index
       console.log(this.C_id, this.current)
-
+      let ptype = 'ptype'
+      if (index === 0) {
+        ptype = 'ptype'
+      } else {
+        ptype = 'catetag'
+      }
       axios.get(
-        `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&catetag=${this.C_id}`
+        `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&${ptype}=${this.C_id}`
       ).then(res => {
-        console.log(res.data)
-        //   if (res.data.data.projs) {
-        //   this.finished = true// 请求结束，禁用懒加载
-        //   return
-        // }
+        this.datalist = []
+        this.datalist = [this.datalist, ...res.data.data.projs]
         // loading改会false
-
+        this.loading = false
         // this.datalist = [...this.datalist, ...res.data.data.projs]
       })
     }
   },
 
   mounted () {
-    axios('/json/C_json.json').then(res => {
+    axios.get('/json/C_json.json').then(res => {
       var myid = this.$route.params.myid
       if (this.$route.params.myid === myid) {}
-
       this.list = res.data[myid]
-      this.id = this.list.map(item => item.id)
     })
     axios.get(
-      '/cgi-bin/gywcom_gy_filter?page=0&pcnt=6&ranktype=time&pstatus=active&ptype=71'
+      `/cgi-bin/gywcom_gy_filter?page=0&pcnt=6&ranktype=time&pstatus=active&ptype=${this.C_id}`
 
     ).then(res => {
-      console.log(res.data.data.projs, 33333333333333333)
-      // setTimeout(()=>{
-
-      // },100)
-
       this.datalist = [...this.datalist, ...res.data.data.projs]
       // loading改会false
       this.loading = false
@@ -133,12 +140,22 @@ export default {
         margin-top: 5px;
     }
     .C_active{
-        background-color: #c60;
-       z-index: 100;
-       color: #c60;
+      background-color: #c60;
+      z-index: 100;
+      color: #c60;
     }
     .hidden{
     height: 55px;
     overflow: hidden;
   }
+    .cs0{
+      display: flex;
+      justify-content: center;
+    }
+    /* .cs1{
+
+    }
+    .cs2{
+
+    } */
 </style>

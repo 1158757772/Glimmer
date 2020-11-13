@@ -13,6 +13,10 @@ const routes = [
     component: () => import('@/views/center')
   },
   {
+    path: '/center/cen_1',
+    component: () => import('../views/center/cen_1')
+  },
+  {
     path: '/projecttype',
     component: () => import('@/views/projecttype'),
     children: [{

@@ -50,7 +50,6 @@ export default {
       swipeable: true,
       list: [],
       value: '',
-      myname: '',
       title: [
         {
           name: '疾病救助',
@@ -94,16 +93,22 @@ export default {
     },
 
     onClick (name, title) {
-      console.log(name, title)
       axios('/json/C_json.json').then(res => {
-        this.myname = this.$route.params.myname
+        this.myname = this.$route.params.myid
+
         this.list = res.data[this.myname]
       })
     }
-  },
-  mounted () {
-
   }
+  /* mounted () {
+    var arr = ['jb', 'fp', 'jy', 'zr', 'qt']
+    console.log(this.$route.params.myid)
+    active = indexOf(arr, this.$route.params.myid)
+
+    function indexOf (arr, item) {
+      return arr.indexOf(item)
+    }
+  } */
 }
 </script>
 
