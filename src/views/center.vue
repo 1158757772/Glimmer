@@ -49,17 +49,26 @@
         <span>0/8</span>
       </div>
       <div class="bot_2">
-        <van-grid :column-num="3" square :border="false">
-          <van-grid-item v-for="value in looplist" :key="value.id"
-          @click="handleClick()" :text="value.title2" :icon="value.img"/>
-        </van-grid>
+          <van-cell is-link @click="showPopup">
+            <van-grid :column-num="3" square :border="false">
+            <van-grid-item v-for="value in looplist" :key="value.id"
+            :text="value.title2" :icon="value.img"/>
+            </van-grid>
+          </van-cell>
+          <van-popup v-model="show2">
+            <div class="tu">
+              <img src="../../public/images/500.jpg" alt="">
+              <span>您还没有任何❤成就</span>
+              <van-button round type="info" color="red" @click="handleOne" size="large" >返回首页</van-button>
+            </div>
+          </van-popup>
       </div>
     </div>
       <van-popup v-model="show"><img src="../../public/images/download.jpg" alt=""
         style="width: 310px; height: 462px;"
       ></van-popup>
     <div class="btn">
-      <van-button round type="info" size="large" color="red" @click="btnClick()">分享我的成就</van-button>
+      <van-button  round type="info" size="large" color="red" @click="btnClick">分享我的成就</van-button>
     </div>
     <div class="logo">
       <img src="../../public/images/logo_gy.png" alt="">
@@ -69,12 +78,13 @@
 
 <script>
 import Vue from 'vue'
-import { Grid, GridItem, Icon, Button, Popup } from 'vant'
-Vue.use(GridItem).use(Icon).use(Grid).use(Button).use(Popup)
+import { Grid, GridItem, Icon, Button, Popup, Cell } from 'vant'
+Vue.use(GridItem).use(Icon).use(Grid).use(Button).use(Popup).use(Cell)
 export default {
   data () {
     return {
       show: false,
+      show2: false,
       looplist: [
         {
           id: '1',
@@ -143,13 +153,17 @@ export default {
     }
   },
   methods: {
-    handleClick () {
-    },
     toOne () {
       this.$router.push('/center/cen_1')
     },
     btnClick () {
       this.show = true
+    },
+    showPopup () {
+      this.show2 = true
+    },
+    handleOne () {
+      this.$router.push('/firstPage')
     }
   }
 }
@@ -222,6 +236,31 @@ export default {
     }
     .logo{
       text-align: center;
+    }
+     .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .block {
+      width: 120px;
+      height: 120px;
+      background-color: #fff;
+    }
+    .tu{
+      width: 310px;
+      height: 426px;
+      background: #fff;
+      flex-direction: column;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      img{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+      }
     }
   }
 </style>
