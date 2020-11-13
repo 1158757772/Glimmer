@@ -72,7 +72,7 @@ export default {
   methods: {
 
     hc (data) {
-      this.$router.push('lovelovedetail/' + data.id + '/home')
+      this.$router.push('/lovelovedetail/' + data.id + '/data_detail')
     },
     C_Load () {
       if (this.datalist.length === 0) {
@@ -134,7 +134,6 @@ export default {
   mounted () {
     axios.get('/json/C_json.json').then(res => {
       var myid = this.$route.params.myid
-
       if (this.$route.params.myid === myid) {
         this.list = res.data[myid]
         console.log(this.$route.params.myid, res.data)
