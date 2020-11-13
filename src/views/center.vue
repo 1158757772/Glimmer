@@ -16,7 +16,9 @@
                 <span>&nbsp;爱心新秀</span>
               </h4>
               <div class="top3_1_1">
-              ______________________
+              <span>
+                ______________________________
+              </span>
               </div>
               <div class="top3_1_2">
                 <span>LV.0</span>&nbsp;
@@ -38,10 +40,12 @@
       </div>
     </div>
     <div class="cen">
-      <van-grid :column-num="3" square :border="false">
-        <van-grid-item v-for="value in looplist" :key="value.id" :icon="value.icon"
-         :text="value.title" @click="toOne( value.title )"/>
-      </van-grid>
+      <div>
+        <van-grid :column-num="3" square :border="false">
+          <van-grid-item v-for="value in looplist" :key="value.id"
+          :icon="value.icon" :text="value.title" @click="toOne()"/>
+        </van-grid>
+      </div>
     </div>
     <div class="bot">
       <div class="bot_1">
@@ -49,17 +53,24 @@
         <span>0/8</span>
       </div>
       <div class="bot_2">
-        <van-grid :column-num="3" square :border="false">
-          <van-grid-item v-for="value in looplist" :key="value.id"
-          @click="handleClick()" :text="value.title2" :icon="value.img"/>
-        </van-grid>
+          <van-grid :column-num="3" square :border="false">
+            <van-grid-item v-for="value in looplist" :key="value.id"
+            :text="value.title2" :icon="value.img" @click="showPopup1"/>
+          </van-grid>
+          <van-popup v-model="show2" closeable>
+            <div class="tu">
+              <img src="../../public/images/500.jpg" alt="">
+              <span>您还没有任何❤成就</span>
+              <van-button round type="info" color="red" @click="handleOne" size="large" >返回首页</van-button>
+            </div>
+          </van-popup>
       </div>
     </div>
       <van-popup v-model="show"><img src="../../public/images/download.jpg" alt=""
         style="width: 310px; height: 462px;"
       ></van-popup>
     <div class="btn">
-      <van-button round type="info" size="large" color="red" @click="btnClick()">分享我的成就</van-button>
+      <van-button  round type="info" size="large" color="red" @click="btnClick">分享我的成就</van-button>
     </div>
     <div class="logo">
       <img src="../../public/images/logo_gy.png" alt="">
@@ -69,12 +80,13 @@
 
 <script>
 import Vue from 'vue'
-import { Grid, GridItem, Icon, Button, Popup } from 'vant'
-Vue.use(GridItem).use(Icon).use(Grid).use(Button).use(Popup)
+import { Grid, GridItem, Icon, Button, Popup, Cell } from 'vant'
+Vue.use(GridItem).use(Icon).use(Grid).use(Button).use(Popup).use(Cell)
 export default {
   data () {
     return {
       show: false,
+      show2: false,
       looplist: [
         {
           id: '1',
@@ -131,25 +143,22 @@ export default {
           title2: '月捐新贵',
           img: 'https://mat1.gtimg.com/gongyi/m/wx/love_account/badge_disable_mini_yjxg.png',
           title: '企业回馈'
-        },
-        {
-          id: '9',
-          icon: '',
-          title2: '',
-          img: '',
-          title: ''
         }
       ]
     }
   },
   methods: {
-    handleClick () {
-    },
     toOne () {
       this.$router.push('/center/cen_1')
     },
     btnClick () {
       this.show = true
+    },
+    showPopup1 () {
+      this.show2 = true
+    },
+    handleOne () {
+      this.$router.push('/firstPage')
     }
   }
 }
@@ -170,6 +179,10 @@ export default {
       height: 100%;
     }
     .top{
+      span,p{
+        font-size: 12px;
+        color: #aaa;
+      }
       position: relative;
       top: -120px;
       margin: 0 16px;
@@ -199,6 +212,7 @@ export default {
       }
     }
     .cen{
+      background: #fff;
       position: relative;
       top: -120px;
       width: 327px;
@@ -214,6 +228,10 @@ export default {
         display: flex;
         justify-content: space-between;
         padding: 10px;
+        span{
+          font-size: 12px;
+          color: #aaa;
+        }
       }
     }
     .btn{
@@ -222,6 +240,31 @@ export default {
     }
     .logo{
       text-align: center;
+    }
+     .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .block {
+      width: 120px;
+      height: 120px;
+      background-color: #fff;
+    }
+    .tu{
+      width: 310px;
+      height: 426px;
+      background: #fff;
+      flex-direction: column;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      img{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+      }
     }
   }
 </style>

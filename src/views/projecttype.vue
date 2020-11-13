@@ -9,55 +9,46 @@
         ref="h"
         >
       </van-search>
-      <van-tabs v-model="active" swipeable sticky>
+      <van-tabs
+      v-model="active"
+      swipeable
+      sticky
+      animated
+      @click="onClick"
+      >
         <van-tab
-        v-for="item in title"
+        v-for="(item) in title"
         :key="item.id"
-        :to="/projecttype/+item.dress"
+        :to="'/projecttype/detail/'+item.dress"
         >
+
         <template #title>
+
           <van-icon
             class="icon"
             :name="item.img"
             size=25
-            />{{item.name}}</template>
+
+            />
+            {{item.name}}
+            </template>
+             <router-view></router-view>
         </van-tab>
       </van-tabs>
-      <!--<div class="navbar">
-      <ul >
-        <router-link to="/projecttype/jb" tag="li" active-class="C_active">
-          <i class="iconfont">&#xe61e;</i>
-          <span>疾病救助</span>
-        </router-link>
-        <router-link to="/projecttype/fp" tag="li" active-class="C_active">
-          <i class="iconfont">&#xe628;</i>
-          <span>扶贫救灾</span>
-        </router-link>
-        <router-link to="/projecttype/jy" tag="li" active-class="C_active">
-          <i class="iconfont">&#xe6b5;</i>
-          <span>教育助学</span>
-        </router-link>
-        <router-link to="/projecttype/zr" tag="li" active-class="C_active">
-          <i class="iconfont">&#xeec3;</i>
-          <span>自然保护</span>
-        </router-link>
-        <router-link to="/projecttype/qt" tag="li" active-class="C_active">
-          <i class="iconfont icon-comments">&#xe6ae;</i>
-          <span>其他</span>
-        </router-link>
-    </ul>
-    </div> -->
-      <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
 import { Search, Tab, Tabs, Icon } from 'vant'
 Vue.use(Search).use(Tabs).use(Tab).use(Icon)
 export default {
   data () {
     return {
+      active: 0,
+      swipeable: true,
+      list: [],
       value: '',
       title: [
         {
@@ -97,14 +88,27 @@ export default {
     }
   },
   methods: {
-
     focusfns () {
       this.$router.push('/C_search')
+    },
+
+    onClick (name, title) {
+      axios('/json/C_json.json').then(res => {
+        this.myname = this.$route.params.myid
+
+        this.list = res.data[this.myname]
+      })
     }
-  },
-  mounted () {
-    console.log(this.$refs.h.clientHeight)
   }
+  /* mounted () {
+    var arr = ['jb', 'fp', 'jy', 'zr', 'qt']
+    console.log(this.$route.params.myid)
+    active = indexOf(arr, this.$route.params.myid)
+
+    function indexOf (arr, item) {
+      return arr.indexOf(item)
+    }
+  } */
 }
 </script>
 
