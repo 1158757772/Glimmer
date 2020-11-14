@@ -68,6 +68,22 @@ const routes = [
     component: () => import('@/views/sport')
   },
   {
+    path: '/onetooneDetails/:id',
+    component: () => import('@/views/onetoone/onetooneDetails')
+  },
+  {
+    path: '/titleDetails',
+    component: () => import('@/views/onetoone/titleDetails')
+  },
+  {
+    path: '/allDetails/:id',
+    component: () => import('@/views/onetoone/allDetails')
+  },
+  {
+    path: '/fitrate',
+    component: () => import('@/views/onetoone/fitrate')
+  },
+  {
     path: '*',
     redirect: '/firstPage' // 2. 重定向
   }
@@ -80,7 +96,10 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
 ]
-
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return routerPush.call(this, location).catch(error => error)
+}
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
