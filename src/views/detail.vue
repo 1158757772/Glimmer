@@ -27,6 +27,8 @@
                   finished-text="我是有底线的"
                   >
                   <van-cell v-for="data in datalist" :key="data.fundId" @click="hc(data)" class="cs0">
+                    {{inner}}
+                    <div class="cs3">
                     <div class="cs1">
                       <img :src="data.listImg | imgsrc" alt="" >
                     </div>
@@ -39,6 +41,7 @@
                       <span>{{data.cateName}}</span>
                     </p>
                     <p>{{data.summary}}</p>
+                    </div>
                     </div>
                   </van-cell>
               </van-list>
@@ -66,7 +69,8 @@ export default {
       datalist: [],
       loading: false,
       finished: false,
-      handleC: []
+      handleC: [],
+      inner: ''
     }
   },
   methods: {
@@ -107,12 +111,11 @@ export default {
       })
     },
     handleClick (item, index) {
-      console.log(item, 1111)
       this.current = 0
       this.C_id = item.id
-      console.log(this.C_id)
+
       this.op = index
-      console.log(index)
+
       let ptype = 'ptype'
       if (index === 0) {
         ptype = 'ptype'
@@ -122,6 +125,11 @@ export default {
       axios.get(
         `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&${ptype}=${this.C_id}`
       ).then(res => {
+        if (!res.data.data.projs) {
+          this.inner = '没有数据~~~~~'
+        } else {
+          this.inner = ''
+        }
         this.datalist = [this.datalist, ...res.data.data.projs]
 
         // loading改会false
@@ -136,7 +144,6 @@ export default {
       var myid = this.$route.params.myid
       if (this.$route.params.myid === myid) {
         this.list = res.data[myid]
-        console.log(this.$route.params.myid, res.data)
       }
     })
     axios.get(
@@ -164,14 +171,15 @@ export default {
     height: 55px;
     overflow: hidden;
   }
-    .cs0{
-      display: flex;
-      justify-content: center;
+    .CS3{
+      width:100%
     }
-    /* .cs1{
-
+    .cs1{
+      float: left;
+      width: 40%;
     }
     .cs2{
-
-    } */
+      float: left;
+      width:60%
+    }
 </style>

@@ -17,7 +17,7 @@
               </h4>
               <div class="top3_1_1">
               <span>
-                ______________________________
+                ________________________
               </span>
               </div>
               <div class="top3_1_2">
@@ -171,11 +171,12 @@ export default {
   }
   #center{
     background: #ccc;
+    width: 100%;
+    height: 100%;
     header{
       position: relative;
       padding-top: 50%;
       background: rgba(223,36,19,.8);
-      width: 100%;
       height: 100%;
     }
     .top{
@@ -202,7 +203,6 @@ export default {
           }
         }
         .top_bot{
-          width: 224px;
           height: 68px;
           margin-left: 72px;
           padding: 0 16px 16px;
