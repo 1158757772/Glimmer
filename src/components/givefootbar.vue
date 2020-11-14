@@ -1,7 +1,8 @@
 <template>
 <div>
   <div class="givefootbar">
-      <van-button round type="primary" size="large"  color="#000" @click="show=true">捐赠</van-button>
+      <router-link to="/firstPage" class="sadh"><van-icon name="wap-home-o" /></router-link>
+      <van-button round type="primary" size="large"  color="#000" @click="szuh">捐赠</van-button>
   </div>
   <van-popup v-model="show" closeable close-icon-position="top-right">
 
@@ -96,6 +97,13 @@ export default {
     },
     gotype () {
       this.$router.push('/projecttype')
+    },
+    szuh () {
+      console.log(123)
+      if (this.$store.state.openCard) {
+        this.show = true
+        console.log(456)
+      }
     }
   }
 }
@@ -112,8 +120,11 @@ export default {
     line-height: 25px;
     background: white;
     text-align: center;
+    .sadh{
+        height: 80%;
+        padding: 10%;
+    }
     .van-button{
-        width: 80%;
         height: 90%;
     }
   }
