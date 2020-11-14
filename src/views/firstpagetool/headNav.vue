@@ -13,12 +13,7 @@
                   <dd>一对一</dd>
               </dl>
           </router-link>
-          <router-link to="/community" tag="li">
-              <dl>
-                  <dt><img src="http://mat1.gtimg.com/gongyi/home/icon-yuejuan.png" alt=""></dt>
-                  <dd>公益社区</dd>
-              </dl>
-          </router-link>
+
           <router-link to="/projecttype" tag="li">
               <dl>
                   <dt><img src="http://mat1.gtimg.com/gongyi/home/icon2019/cate_icon.png" alt=""></dt>

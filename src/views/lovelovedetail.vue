@@ -250,13 +250,22 @@ export default {
       asmuserdata: [],
       moreusergive: [],
       moremoregive: [],
-      giveindex: 0
+      giveindex: 0,
+      startTime: '',
+      proinfo: '',
+      protime: '',
+      profinance: '',
+      giveinfo: '',
+      giveimg: ''
     }
   },
   components: {
     gSwiper
   },
   mounted () {
+    this.$store.commit('closeFootBar')
+    this.$store.commit('openGiveFootBar')
+
     let doId
     if (parseInt(this.detailId.toString().substring(this.detailId.toString().length - 2, this.detailId.toString().length - 1)) !== 0) {
       doId = this.detailId.toString().substring(this.detailId.toString().length - 2, this.detailId.toString().length)
@@ -273,6 +282,7 @@ export default {
         this.contenttitle = res.data.base.title
         this.m_summary = res.data.base.m_summary
         this.desc = res.data.detail.desc
+        this.startTime = res.data.base.startTime
         this.jgcreatetime = res.data.base.launch_time
         this.record_num = res.data.base.record_num
         this.fundName = res.data.base.fundName
@@ -281,7 +291,21 @@ export default {
         this.funder_name = res.data.detail.desc_module.funder_name
         this.funder_corp = res.data.detail.desc_module.funder_corp
         this.funder_intro = res.data.detail.desc_module.funder_intro
-        this.pl = res.data.base.count.process
+        this.giveinfo = res.data.base.ext_donate.nm
+        this.giveimg = res.data.base.listImg + '/200'
+        if (res.data.base.implement_res && res.data.base.count) {
+          this.proinfo = res.data.base.implement_res
+          this.protime = '3个月内共进展' + res.data.base.count.process + '次'
+          this.profinance = '2019年至今共进行' + res.data.base.count.finance + '次财务披露'
+        } else {
+          this.proinfo = '已提交善款执行预算'
+          this.protime = '已提交项目执行计划'
+          this.profinance = '未进入执行披露期'
+        }
+
+        if (res.data.base.count) {
+          this.pl = res.data.base.count.process
+        }
         this.implement_res = res.data.base.implement_res
         this.proj_budget = res.data.detail.desc_module.proj_budget
         this.proj_exe_plan = res.data.detail.desc_module.proj_exe_plan
@@ -291,6 +315,7 @@ export default {
         this.proj_donate_feedback = res.data.detail.desc_module.proj_donate_feedback
         this.proj_invoice = res.data.detail.desc_module.proj_invoice
         this.needMoney = res.data.base.needMoney
+        console.log(this.needMoney)
         if (parseInt(res.data.base.needMoney) === 0) {
           axios.get(`/cgi-bin/ProjInfoQuery.fcgi?id=${this.detailId}&type=proj_mini_stat&is_parent=1`).then(res => {
             this.arhavemoney = (res.data.msg.stat.children_money + res.data.msg.stat.recvedMoney) / 100
@@ -320,21 +345,34 @@ export default {
         this.contenttitle = res.data.msg.base.title
         this.m_summary = res.data.msg.base.summary
       }
+      this.$store.commit('createOpenCard', {
+        popuptitle: this.contenttitle,
+        popupaccept: this.fundName,
+        popupdo: this.pName,
+        startTime: this.startTime,
+        proinfo: this.proinfo,
+        protime: this.protime,
+        profinance: this.profinance,
+        giveinfo: this.giveinfo,
+        giveimg: this.giveimg
+
+      })
     })
     axios.get(`/cgi-bin/WXUnprocessV2?pid=${this.detailId}&row=2&curr=${this.curr}&soid=0`).then(res => {
       this.prolist = res.data.info.list
     })
-    // https://ssl.gongyi.qq.com/cgi-bin/gywcom_1999_qry_yqj_list_project?pid=203500&page=1
     axios.get(`/cgi-bin/gywcom_1999_qry_yqj_list_project?pid=${this.detailId}&page=1`).then(res => {
       this.asmuserdata = res.data.data.yqj_list
     })
-    // moreusergive
-    // https://ssl.gongyi.qq.com/cgi-bin/gywcom_proj_trans_query_ch?pid=203500&type=home
     axios.get(`/cgi-bin/gywcom_proj_trans_query_ch?pid=${this.detailId}&type=home`).then(res => {
-      console.log(res.data)
       this.moreusergive = res.data.data.trans
     })
   },
+  destroyed () {
+    this.$store.commit('openFootBar')
+    this.$store.commit('closeGiveFootBar')
+  },
+
   methods: {
     zan (id) {
       this.swid.push(id)

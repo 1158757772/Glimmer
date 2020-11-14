@@ -72,9 +72,9 @@
     <div class="btn">
       <van-button  round type="info" size="large" color="red" @click="btnClick">分享我的成就</van-button>
     </div>
-    <div class="logo">
+    <!-- <div class="logo">
       <img src="../../public/images/logo_gy.png" alt="">
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -215,13 +215,11 @@ export default {
       background: #fff;
       position: relative;
       top: -120px;
-      width: 327px;
       margin: 16px ;
     }
     .bot{
       position: relative;
       top: -120px;
-      width: 327px;
       background: #fff;
       margin: 16px;
       .bot_1{
