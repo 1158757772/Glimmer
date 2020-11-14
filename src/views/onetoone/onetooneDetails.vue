@@ -7,7 +7,7 @@
           left-arrow
           @click-left="onClickLeft"
         />
-        <div class="personZyk">
+        <div class="personZyk" v-if="message">
             <dl>
                 <dt>
                   <img v-if="message.head = ''" :src="message.head">
@@ -110,7 +110,7 @@ export default {
             }
           }
         }
-        console.log(this.message)
+        // console.log(this.message)
       })
   },
   destroyed () {

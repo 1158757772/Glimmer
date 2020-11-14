@@ -133,6 +133,12 @@ export default {
       starmodel: '' // 选中的星座
     }
   },
+  mounted () {
+    this.$store.commit('closeFootBar')
+  },
+  destroyed () {
+    this.$store.commit('openFootBar')
+  },
   methods: {
     onSwipeRight () { // 右划事件
       // console.log('right')
@@ -271,7 +277,7 @@ export default {
     background: orangered;
     color: #fff;
     position: fixed;
-    bottom: 100px; left: 0;
+    bottom: 20px; left: 0;
     margin: 0 5%;
   }
 </style>

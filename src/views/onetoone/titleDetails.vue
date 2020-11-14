@@ -1,7 +1,7 @@
 <template>
   <div id="titleDetails" v-if="titleList.length">
       <van-nav-bar
-        title="为您展示5位符合条件的受助者"
+        title="为您展示符合条件的受助者"
         left-text="返回"
         right-text="按钮"
         left-arrow
@@ -80,12 +80,12 @@ export default {
   },
   methods: {
     onClickLeft () {
-      console.log('left')
+      // console.log('left')
 
       this.$router.back()
     },
     onClickRight () {
-      console.log('right')
+      // console.log('right')
 
       this.$router.push('/fitrate')
     },

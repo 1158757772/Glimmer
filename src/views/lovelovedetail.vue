@@ -315,7 +315,7 @@ export default {
         this.proj_donate_feedback = res.data.detail.desc_module.proj_donate_feedback
         this.proj_invoice = res.data.detail.desc_module.proj_invoice
         this.needMoney = res.data.base.needMoney
-        console.log(this.needMoney)
+        // console.log(this.needMoney)
         if (parseInt(res.data.base.needMoney) === 0) {
           axios.get(`/cgi-bin/ProjInfoQuery.fcgi?id=${this.detailId}&type=proj_mini_stat&is_parent=1`).then(res => {
             this.arhavemoney = (res.data.msg.stat.children_money + res.data.msg.stat.recvedMoney) / 100
@@ -379,7 +379,7 @@ export default {
     },
     more () {
       this.curr++
-      console.log(this.curr)
+      // console.log(this.curr)
       axios.get(`/cgi-bin/WXUnprocessV2?pid=${this.detailId}&row=2&curr=${this.curr}&soid=0`).then(res => {
         this.prolist = [...this.prolist, ...res.data.info.list]
       })

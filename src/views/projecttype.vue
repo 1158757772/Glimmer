@@ -108,7 +108,7 @@ export default {
       this.list = res.data[myid]
     })
     var arr = ['jb', 'fp', 'jy', 'zr', 'qt']
-    console.log(this.$route.params.myid)
+    // console.log(this.$route.params.myid)
     this.active = indexOf(arr, this.$route.params.myid)
     function indexOf (arr, item) {
       return arr.indexOf(item)

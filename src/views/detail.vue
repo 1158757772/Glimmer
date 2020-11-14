@@ -101,7 +101,7 @@ export default {
         `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&${ptype}=${this.C_id}`
       ).then(res => {
         if (res.data.data.projs == null) {
-          console.log(1111111)
+          // console.log(1111111)
           this.finished = true
           return
         }
