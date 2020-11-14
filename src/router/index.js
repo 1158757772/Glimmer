@@ -37,6 +37,10 @@ const routes = [
     component: () => import('@/views/onetoone/titleDetails')
   },
   {
+    path: '/allDetails/:id',
+    component: () => import('@/views/onetoone/allDetails')
+  },
+  {
     path: '/fitrate',
     component: () => import('@/views/onetoone/fitrate')
   },

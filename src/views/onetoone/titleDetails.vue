@@ -74,7 +74,7 @@ export default {
     })
       .then(res => {
         this.titleList = res.data.data.list[0]
-        console.log(res.data.data.list[0])
+        // console.log(res.data.data.list[0])
       })
   },
   methods: {

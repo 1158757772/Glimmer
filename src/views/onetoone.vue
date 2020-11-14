@@ -77,7 +77,7 @@
           @load="onLoad"
         >
           <h3>全部项目</h3>
-          <van-cell v-for="data in datalist" :key="data.id">
+          <van-cell v-for="data in datalist" :key="data.id" @click="allClick(data.id)">
             <img :src="data.listImg | imgFilter">
             <div>
               <strong>{{data.title}}</strong>
@@ -137,7 +137,7 @@ export default {
         return
       }
 
-      if (this.datalist.length === this.totnum) {
+      if (this.datalist.length >= this.totnum) {
         this.finished = true
 
         return
@@ -160,6 +160,11 @@ export default {
     },
     titleClick () {
       this.$router.push('/titleDetails')
+    },
+    allClick (allId) {
+      // console.log(allId)
+
+      this.$router.push(`/allDetails/${allId}`)
     }
   },
   mounted () {
