@@ -183,9 +183,10 @@ export default {
       ]
     })
       .then(res => {
-        // console.log(res.data.data.list)
+      // console.log(res.data.data.list)
         this.list = res.data.data.list
       })
+
     axios.get('/cgi-bin/Search1v1.fcgi?pt=1&p=1&limit=5')
       .then(res => {
       // console.log(res.data.plist);

@@ -60,20 +60,45 @@
               <section v-html="info.intro"></section>
           </div>
       </div>
+      <div class="loveZyk">
+          <h3>爱心流水</h3>
+          <div v-for="(love, index) in loveList" :key="index">
+              <img v-if="love.h != ''" :src="love.h">
+              <img v-else src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3950359295,879559074&fm=11&gp=0.jpg">
+              <p>{{love.n}} 捐出
+                  <strong>{{love.m / 100}}</strong> 元
+                  <i>{{love.t | timeago}}</i>
+              </p>
+          </div>
+          <span @click="lovemoreClick">
+              <van-icon name="arrow-down" style="float:none" />
+              展开更多爱心流水
+          </span>
+      </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Vue from 'vue'
-import { Icon } from 'vant'
+import { Icon, List, Cell } from 'vant'
 
 import onetooneSwiper from './onetooneSwiper'
 
-Vue.use(Icon)
+Vue.use(Icon).use(List).use(Cell)
 
 Vue.filter('listImgFilter', (img) => {
   return img + '/100'
+})
+
+Vue.filter('timeago', function (time) {
+  if (time >= 60 && time < 3600) {
+    return Math.floor(time / 60) + '分钟前'
+  } else if (time >= 3600) {
+    return Math.floor(time / 3600) + '小时前'
+  } else {
+    return time + '秒前'
+  }
 })
 
 export default {
@@ -84,19 +109,25 @@ export default {
     return {
       allInfo: null,
       allList: [],
-      isHidde: false
+      isHidde: false,
+      loveList: [],
+      loveMorelist: [],
+      loveIndex: 0
     }
   },
   methods: {
-    introFilter (intro) {
-      // console.log(intro)
-      const re = /^(<p>)(<\/p>)$/g
-
-      const str = ''
-
-      intro.replace(re, str)
-
-      // console.log(str)
+    lovemoreClick () {
+      // console.log(this.loveMorelist.length);
+      if (!this.loveMorelist.length) {
+        axios.get(`/cgi-bin/gywcom_proj_trans_query_ch?pid=${this.$route.params.id}&type=detail`)
+          .then(res => {
+            this.loveMorelist = res.data.data.trans
+            this.loveList = [...this.loveList, this.loveMorelist[this.loveIndex], this.loveMorelist[this.loveIndex + 1], this.loveMorelist[this.loveIndex + 2]]
+          })
+      } else {
+        this.loveIndex = this.loveIndex + 3
+        this.loveList = [...this.loveList, this.loveMorelist[this.loveIndex], this.loveMorelist[this.loveIndex + 1], this.loveMorelist[this.loveIndex + 2]]
+      }
     }
   },
   mounted () {
@@ -121,9 +152,11 @@ export default {
 
         this.allList = res.data.data.list[0]
       })
-    axios.get(`/cgi-bin/gywcom_proj_trans_query_ch?pid=${this.$route.params.id}&type=detail`)
+    axios.get(`/cgi-bin/gywcom_proj_trans_query_ch?pid=${this.$route.params.id}&type=home`)
       .then(res => {
-        console.log(res.data.data)
+        //   console.log(res.data.data.trans)
+
+        this.loveList = res.data.data.trans
       })
   }
 }
@@ -131,7 +164,7 @@ export default {
 
 <style>
     #allDetails{
-        background: #ccc;
+        background: #eee;
     }
     .allInstitutionZyk{
         background: #fff;
@@ -272,5 +305,38 @@ export default {
     }
     .successZyk section h3,.successZyk section img{
         display: none;
+    }
+    .loveZyk{
+        padding: 20px 0;
+        background: #fff;
+        margin-bottom: 20px;
+    }
+    .loveZyk h3{
+        border-left: 6px solid orangered;
+        padding: 0 10px;
+    }
+    .loveZyk div{
+        height: 26px;
+        line-height: 26px;
+        padding: 0 10px;
+        margin: 20px 0;
+    }
+    .loveZyk img{
+        height: 100%;
+        border-radius: 50%;
+        margin-right: 20px;
+        float: left;
+        display: block;
+    }
+    .loveZyk strong{
+        color: orangered;
+    }
+    .loveZyk span{
+        text-align: center;
+        display: block;
+    }
+    .loveZyk i{
+        float: right;
+        margin-right: 10px;
     }
 </style>
