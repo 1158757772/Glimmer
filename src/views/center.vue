@@ -41,7 +41,7 @@
     </div>
     <div class="cen">
       <div>
-        <van-grid :column-num="3" square :border="false">
+        <van-grid :column-num="3"  :border="false">
           <van-grid-item v-for="value in looplist" :key="value.id"
           :icon="value.icon" :text="value.title" @click="toOne()"/>
         </van-grid>
@@ -53,7 +53,7 @@
         <span>0/8</span>
       </div>
       <div class="bot_2">
-          <van-grid :column-num="3" square :border="false">
+          <van-grid :column-num="3" :border="false">
             <van-grid-item v-for="value in looplist" :key="value.id"
             :text="value.title2" :icon="value.img" @click="showPopup1"/>
           </van-grid>
@@ -215,13 +215,11 @@ export default {
       background: #fff;
       position: relative;
       top: -120px;
-      width: 327px;
       margin: 16px ;
     }
     .bot{
       position: relative;
       top: -120px;
-      width: 327px;
       background: #fff;
       margin: 16px;
       .bot_1{
