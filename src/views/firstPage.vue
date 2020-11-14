@@ -139,26 +139,7 @@
       <div slot="showtext" class="showtext"><h3>为濒危水鸟建立保护基地</h3><h4>守护栖息地任鸟飞</h4></div>
       <van-button round type="info" slot="showbtn" class="showbtn" color="linear-gradient(to right, #ff6034, #ee0a24)" size="small" @click="goid(10306)">保护濒危</van-button>
       <ul slot="showlistgroup">
-        <li @click="goid(1000018338,'sub_data_detail')">
-           <dl class="whole-dl">
-          <dt class="img_dt"><img src="http://imgcdn.gongyi.qq.com/gongyi/6a335576a1d92cb0ab5dc011c82df40ba325a0b534197a6810313555a0951c4fdcaf3c917b4c9ef6/500" alt=""></dt>
-          <dd class="text_dd">
-              <h3>给流浪动物一个家，让它们平安度过这个冬天</h3>
-              <p class="left">许它一个明天</p>
-              <p class="right">温暖庇护</p>
-          </dd>
-          </dl>
-        </li>
-        <li @click="goid(1000021650,'sub_data_detail')">
-           <dl class="whole-dl">
-          <dt class="img_dt"><img src="http://imgcdn.gongyi.qq.com/gongyi/567dd0a80ef33937052462ff5b8ee41adc8d9c612f1e946909e80b82ffb073c1/500" alt=""></dt>
-          <dd class="text_dd">
-              <h3>开展林区植被恢复，给国宝安全的生存环境</h3>
-              <p class="left">守护熊猫和他的朋友</p>
-              <p class="right">关爱他们</p>
-          </dd>
-          </dl>
-        </li>
+
       </ul>
     </show-card>
     <bottom-swiper>

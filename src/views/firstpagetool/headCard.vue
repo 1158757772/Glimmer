@@ -10,6 +10,8 @@
         <div class="wording">{{data.wording}}</div>
       </div>
       </div>
+
+      <!-- 这是第一个弹出层结构----------------------------------- -->
       <van-popup v-model="show" closeable close-icon-position="top-right">
 
         <div class="popup_head">
@@ -17,7 +19,7 @@
           <h3>微光公益打造透明公益平台，每个人都是一束微光</h3>
         </div>
         <div class="popup_foot">
-         <van-button color="linear-gradient(to right, #000,  rgb(221, 164, 59))"  class="left-btn">了解更多项目信息</van-button>
+         <van-button color="linear-gradient(to right, #000,  rgb(221, 164, 59))"  class="left-btn" >了解更多项目信息</van-button>
           <van-button color="linear-gradient(to left, #000,  rgb(221, 164, 59))" class="right-btn" @click="give">
             我已知情，继续捐赠
           </van-button>
@@ -38,6 +40,7 @@
         </div>
 
       </van-popup>
+      <!-- ---------------------------------------------------------------------------------------- -->
       <van-popup
         v-model="showv2"
         closeable
@@ -114,7 +117,7 @@ export default {
       const arr = id.toString().split('')
       const len = arr.length - 1
       let idResult
-      if (arr[len - 1] === 0) {
+      if (parseInt(arr[len - 1]) === 0) {
         idResult = [arr[len]].join('')
       } else {
         idResult = [arr[(len - 1)], arr[len]].join('')

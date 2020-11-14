@@ -8,7 +8,6 @@ module.exports = {
       '/json_data': {
         target: 'https://scdn.gongyi.qq.com',
         changeOrigin: true
-
       }
 
     }
