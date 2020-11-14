@@ -1,12 +1,9 @@
 module.exports = {
   devServer: {
     proxy: {
-      '/tiechui': {
-        target: 'https://m.maoyan.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/tiechui': ''
-        }
+      '/cgi-bin': {
+        target: 'https://ssl.gongyi.qq.com',
+        changeOrigin: true
       },
       '/kerwin': {
         target: 'https://h5.ele.me',
@@ -15,12 +12,13 @@ module.exports = {
           '^/kerwin': '' // 路径重写
         }
       },
-      '/cgi-bin': {
-        target: 'https://ssl.gongyi.qq.com',
+      //
+      '/json_data': {
+        target: 'https://scdn.gongyi.qq.com',
         changeOrigin: true
       }
-      //
+
     }
   },
-  lintOnSave: false
+  lintOnSave: true
 }
