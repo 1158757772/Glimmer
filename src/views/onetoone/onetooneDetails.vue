@@ -72,6 +72,8 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('closeFootBar')
+    this.$store.commit('openGiveFootBar')
     axios.get(`/cgi-bin/ProjInfoQuery.fcgi?id=${this.$route.params.id}&type=proj`)
       .then(res => {
         // console.log(res.data.msg);
@@ -110,6 +112,10 @@ export default {
         }
         console.log(this.message)
       })
+  },
+  destroyed () {
+    this.$store.commit('openFootBar')
+    this.$store.commit('closeGiveFootBar')
   }
 }
 </script>

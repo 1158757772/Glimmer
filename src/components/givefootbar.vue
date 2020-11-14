@@ -99,10 +99,8 @@ export default {
       this.$router.push('/projecttype')
     },
     szuh () {
-      console.log(123)
-      if (this.$store.state.openCard) {
+      if (this.$store.state.openCard.popuptitle) {
         this.show = true
-        console.log(456)
       }
     }
   }
@@ -123,8 +121,14 @@ export default {
     .sadh{
         height: 80%;
         padding: 10%;
+        padding-left: 5px;
+        .van-icon{
+          font-size: 30px;
+          vertical-align: middle;
+        }
     }
     .van-button{
+        width: 50%;
         height: 90%;
     }
   }

@@ -131,6 +131,9 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('closeFootBar')
+    this.$store.commit('openGiveFootBar')
+    console.log(this.$route.params.id)
     axios.get(`/cgi-bin/ProjInfoQuery.fcgi?type=proj&id=${this.$route.params.id}`)
       .then(res => {
         // console.log(res.data.msg);
@@ -158,6 +161,10 @@ export default {
 
         this.loveList = res.data.data.trans
       })
+  },
+  destroyed () {
+    this.$store.commit('openFootBar')
+    this.$store.commit('closeGiveFootBar')
   }
 }
 </script>
