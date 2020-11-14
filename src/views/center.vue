@@ -17,7 +17,7 @@
               </h4>
               <div class="top3_1_1">
               <span>
-                ______________________________
+                ________________________
               </span>
               </div>
               <div class="top3_1_2">
@@ -41,7 +41,7 @@
     </div>
     <div class="cen">
       <div>
-        <van-grid :column-num="3" square :border="false">
+        <van-grid :column-num="3"  :border="false">
           <van-grid-item v-for="value in looplist" :key="value.id"
           :icon="value.icon" :text="value.title" @click="toOne()"/>
         </van-grid>
@@ -53,7 +53,7 @@
         <span>0/8</span>
       </div>
       <div class="bot_2">
-          <van-grid :column-num="3" square :border="false">
+          <van-grid :column-num="3" :border="false">
             <van-grid-item v-for="value in looplist" :key="value.id"
             :text="value.title2" :icon="value.img" @click="showPopup1"/>
           </van-grid>
@@ -72,9 +72,9 @@
     <div class="btn">
       <van-button  round type="info" size="large" color="red" @click="btnClick">分享我的成就</van-button>
     </div>
-    <div class="logo">
+    <!-- <div class="logo">
       <img src="../../public/images/logo_gy.png" alt="">
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -171,11 +171,12 @@ export default {
   }
   #center{
     background: #ccc;
+    width: 100%;
+    height: 100%;
     header{
       position: relative;
       padding-top: 50%;
       background: rgba(223,36,19,.8);
-      width: 100%;
       height: 100%;
     }
     .top{
@@ -202,7 +203,6 @@ export default {
           }
         }
         .top_bot{
-          width: 224px;
           height: 68px;
           margin-left: 72px;
           padding: 0 16px 16px;
@@ -215,13 +215,11 @@ export default {
       background: #fff;
       position: relative;
       top: -120px;
-      width: 327px;
       margin: 16px ;
     }
     .bot{
       position: relative;
       top: -120px;
-      width: 327px;
       background: #fff;
       margin: 16px;
       .bot_1{

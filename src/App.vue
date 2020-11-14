@@ -1,6 +1,7 @@
 <template>
   <div>
-    <footer-bar></footer-bar>
+    <footer-bar v-if="$store.state.footBarOnoff"></footer-bar>
+    <givefooter-bar v-if="$store.state.giveFootOnoff"></givefooter-bar>
     <!-- 路由容器---插槽封装 -->
     <section>
       <router-view></router-view>
@@ -9,9 +10,11 @@
 </template>
 <script>
 import footerBar from '@/components/footerBar'
+import givefooterBar from '@/components/givefootbar'
 export default {
   components: {
-    footerBar
+    footerBar,
+    givefooterBar
   }
 }
 </script>

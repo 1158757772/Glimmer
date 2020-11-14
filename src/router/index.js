@@ -56,10 +56,6 @@ const routes = [
     ] */
   },
   {
-    path: '/community',
-    component: () => import('@/views/community')
-  },
-  {
     path: '/C_search',
     component: () => import('../views/C_search')
   },
