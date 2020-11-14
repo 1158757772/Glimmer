@@ -23,7 +23,6 @@
         >
 
         <template #title>
-
           <van-icon
             class="icon"
             :name="item.img"
@@ -40,7 +39,6 @@
 
 <script>
 import Vue from 'vue'
-import axios from 'axios'
 import { Search, Tab, Tabs, Icon } from 'vant'
 // import LoginVue from '../../../1105/上午/test2005/src/views/Login.vue'
 Vue.use(Search).use(Tabs).use(Tab).use(Icon)
@@ -49,7 +47,6 @@ export default {
     return {
       active: 0,
       swipeable: true,
-      list: [],
       value: '',
       title: [
         {
@@ -94,19 +91,11 @@ export default {
     },
 
     onClick (name, title) {
-      axios('/json/C_json.json').then(res => {
-        this.myname = this.$route.params.myid
-
-        this.list = res.data[this.myname]
-      })
+      this.$store.commit('cleanlist')
+      this.$store.dispatch('getmyjson', this.$route.params.myid)
     }
   },
   mounted () {
-    axios.get('/json/C_json.json').then(res => {
-      var myid = this.$route.params.myid
-      if (this.$route.params.myid === myid) {}
-      this.list = res.data[myid]
-    })
     var arr = ['jb', 'fp', 'jy', 'zr', 'qt']
     console.log(this.$route.params.myid)
     this.active = indexOf(arr, this.$route.params.myid)

@@ -4,10 +4,11 @@
         :border="false"
         :column-num="4"
         :class=" ishidden?'hidden':''"
+        v-if="list.length"
         >
 
             <van-grid-item
-            v-for="(item,index) in list"
+            v-for="(item,index) in $store.state.list"
             :key="item.id"
             :class="op===index?'C_active':'' "
             @click="handleClick(item,index)"
@@ -64,7 +65,7 @@ export default {
       C_id: 71,
       id: [],
       datalist: [],
-      loading: false,
+      loading: this.$store.state.loading,
       finished: false,
       handleC: []
     }
@@ -119,6 +120,7 @@ export default {
       } else {
         ptype = 'catetag'
       }
+      console.log(this.C_id)
       axios.get(
         `/cgi-bin/gywcom_gy_filter?page=${this.current}&pcnt=6&ranktype=time&pstatus=active&${ptype}=${this.C_id}`
       ).then(res => {
@@ -132,22 +134,23 @@ export default {
   },
 
   mounted () {
-    axios.get('/json/C_json.json').then(res => {
-      var myid = this.$route.params.myid
-      if (this.$route.params.myid === myid) {
-        this.list = res.data[myid]
-        console.log(this.$route.params.myid, res.data)
-      }
-    })
-    axios.get(
-      `/cgi-bin/gywcom_gy_filter?page=0&pcnt=6&ranktype=time&pstatus=active&ptype=${this.C_id}`
-
-    ).then(res => {
-      this.datalist = [...this.datalist, ...res.data.data.projs]
-
-      // loading改会false
-      this.loading = false
-    })
+    if (this.$store.state.list.length === 0) {
+      console.log('require axios')
+      this.$store.dispatch('getmyjson', this.$route.params.myid).then(() => {
+        console.log(this.$store.state.list)
+        this.list = this.$store.state.list
+      })
+    } else {
+      console.log('run cache')
+    }
+    if (this.$store.state.detaillist.length === 0) {
+      this.$store.dispatch('getdetaillist', this.C_id).then(() => {
+        this.datalist = this.$store.state.detaillist
+        console.log(this.list)
+      })
+    } else {
+      console.log('run cache2')
+    }
   }
 }
 </script>

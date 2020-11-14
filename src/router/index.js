@@ -24,7 +24,7 @@ const routes = [
     path: '/projecttype',
     component: () => import('@/views/projecttype'),
     children: [{
-      path: '/projecttype/detail/:myid', // 6-动态路由
+      path: '/projecttype/detail/:myid', // 动态路由
       component: () => import('@/views/detail')
     },
     {
@@ -32,28 +32,6 @@ const routes = [
       redirect: '/projecttype/detail/jz' // 重定向
     }
     ]
-    /* [
-      {
-        path: '/projecttype/fp',
-        component: () => import('../views/projecttype/fp')
-      },
-      {
-        path: '/projecttype/jb',
-        component: () => import('../views/projecttype/jb')
-      },
-      {
-        path: '/projecttype/jy',
-        component: () => import('../views/projecttype/jy')
-      },
-      {
-        path: '/projecttype/qt',
-        component: () => import('../views/projecttype/qt')
-      },
-      {
-        path: '/projecttype/zr',
-        component: () => import('../views/projecttype/zr')
-      }
-    ] */
   },
   {
     path: '/community',
