@@ -177,6 +177,7 @@ export default {
     .cs1{
       float: left;
       width: 40%;
+      padding-top: 15px;
     }
     .cs2{
       float: left;
