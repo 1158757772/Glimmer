@@ -7,7 +7,7 @@
           left-arrow
           @click-left="onClickLeft"
         />
-        <div class="personZyk" v-if="message">
+        <div class="personZyk" v-if="message != null">
             <dl>
                 <dt>
                   <img v-if="message.head = ''" :src="message.head">
@@ -25,6 +25,7 @@
               <div v-if="message.intro">{{message.intro}}</div>
               <div v-if="message.teache_evaluation">教师评语：{{message.teache_evaluation}}</div>
         </div>
+        <div v-else></div>
         <div class="titleZyk" v-if="info">
             <h3>【{{info.base.title}}】</h3>
             <p>{{info.base.summary}}</p>
@@ -97,19 +98,19 @@ export default {
       .then(res => {
         // console.log(res.data.data.list)
 
-        // res.data.data.list.forEach(item => {
-        //     // item.forEach(info => {
-
-        //     // })
-        // });
-        for (var i = 0; i < res.data.data.list.length; i++) {
-          for (var n = 0; n < res.data.data.list[i].length; n++) {
-            // console.log(res.data.data.list[i][n].projid);
-            if (res.data.data.list[i][n].projid === this.$route.params.id) {
-              this.message = res.data.data.list[i][n]
-            }
-          }
-        }
+        res.data.data.list.forEach(item => {
+          item.forEach(info => {
+            this.message = info
+          })
+        })
+        // for (var i = 0; i < res.data.data.list.length; i++) {
+        //   for (var n = 0; n < res.data.data.list[i].length; n++) {
+        //     // console.log(res.data.data.list[i][n].projid);
+        //     if (res.data.data.list[i][n].projid === this.$route.params.id) {
+        //       this.message = res.data.data.list[i][n]
+        //     }
+        //   }
+        // }
         // console.log(this.message)
       })
   },
@@ -162,7 +163,7 @@ export default {
         color: #666;
         background: skyblue;
         padding: 10px;
-        border-radius: 20px;
+        border-radius: 10px;
     }
     .titleZyk,.institutionZyk{
         padding: 10px;

@@ -206,13 +206,13 @@ export default {
     flex-direction: column;
   }
   header{
-    height: 20%;
+    /* height: 10%; */
     background-image: url(https://mat1.gtimg.com/gongyi/1v1/index/index-bannerbg.png);
     background-size: cover;
     padding: 3%;
-    position: sticky;
+    /* position: sticky;
     left: 0; top: 0;
-    z-index: 100;
+    z-index: 100; */
   }
   header p:nth-child(1),header p:nth-child(2){
     font-size: 20px;
@@ -245,7 +245,7 @@ export default {
   }
   .person,.texture{
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
   }
   .person dt{
     margin-right: 10px;
@@ -260,6 +260,11 @@ export default {
   .person dd p{
     line-height: 20px;
     font-size: 12px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
   .texture{
     margin-top: 10px;
@@ -285,6 +290,10 @@ export default {
   .all p{
     line-height: 20px;
     font-size: 13px;
-    margin-top: 10px;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
   }
 </style>

@@ -7,7 +7,7 @@
           <van-icon name="location-o" />
           {{carmodel ? carmodel : '地域'}}
         </van-cell>
-        <van-popup v-model="show"  position="bottom" :style="{ height: '30%' }">
+        <van-popup v-model="show"  position="bottom" :style="{ height: '50%' }">
           <van-area title="请选择地域"  :area-list="areaList" ref="myarea" @cancel="onCancel" @confirm="onConfirm"/>
         </van-popup>
         <!-- 性别栏 -->
@@ -15,7 +15,7 @@
           <van-icon name="like-o" />
           {{sexmodel ? sexmodel : '性别'}}
         </van-cell>
-        <van-popup v-model="sex"  position="bottom" :style="{ height: '30%' }">
+        <van-popup v-model="sex"  position="bottom" :style="{ height: '50%' }">
           <van-area title="请选择性别" columns-num="1" :area-list="sexList" ref="mysex" @cancel="cancelSex" @confirm="confirmSex"/>
         </van-popup>
         <!-- 年龄栏 -->
@@ -23,7 +23,7 @@
           <van-icon name="notes-o" />
           {{agemodel ? agemodel : '年龄'}}
         </van-cell>
-        <van-popup v-model="age"  position="bottom" :style="{ height: '30%' }">
+        <van-popup v-model="age"  position="bottom" :style="{ height: '50%' }">
           <van-area title="请选择年龄" columns-num="1" :area-list="ageList" ref="myage" @cancel="cancelAge" @confirm="confirmAge"/>
         </van-popup>
         <!-- 生日栏 -->
@@ -31,7 +31,7 @@
           <van-icon name="point-gift-o" />
           {{birthdaymodel ? birthdaymodel : '生日'}}
         </van-cell>
-        <van-popup v-model="birthday"  position="bottom" :style="{ height: '30%' }">
+        <van-popup v-model="birthday"  position="bottom" :style="{ height: '50%' }">
           <van-area title="请选择生日" columns-num="1" :area-list="birthdayList" ref="mybirthday" @cancel="cancelBirthday" @confirm="confirmBirthday"/>
         </van-popup>
         <!-- 星座栏 -->
@@ -39,7 +39,7 @@
           <van-icon name="star-o" />
           {{starmodel ? starmodel : '星座'}}
         </van-cell>
-        <van-popup v-model="star"  position="bottom" :style="{ height: '30%' }">
+        <van-popup v-model="star"  position="bottom" :style="{ height: '50%' }">
           <van-area title="请选择星座" columns-num="1" :area-list="starList" ref="mystar" @cancel="cancelStar" @confirm="confirmStar"/>
         </van-popup>
         <button @click="$router.back()">筛选</button>

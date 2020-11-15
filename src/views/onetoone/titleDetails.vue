@@ -39,10 +39,10 @@
             <p>【{{item.projname}}】支持TA{{item.aid_intro}}￥{{item.aid_amount / 100}}</p>
           </dd>
         </dl>
-        <button v-if="item.wish">和{{item.name}}结对</button>
+        <button v-if="item.wish" @click="runClick(item.projid)">和{{item.name}}结对</button>
         <div class="btn" v-else>
           <button class="left">发一起捐</button>
-          <button>和TA结对</button>
+          <button @click="runClick(item.projid)">和TA结对</button>
         </div>
       </div>
   </div>
@@ -90,7 +90,8 @@ export default {
       this.$router.push('/fitrate')
     },
     runClick (id) {
-      this.$router.push(`/allDetails/${id}`)
+      console.log(id)
+      this.$router.push(`/onetooneDetails/${id}`)
     }
   },
   destroyed () {

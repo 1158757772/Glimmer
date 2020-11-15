@@ -128,15 +128,21 @@ export default {
         this.loveIndex = this.loveIndex + 3
         this.loveList = [...this.loveList, this.loveMorelist[this.loveIndex], this.loveMorelist[this.loveIndex + 1], this.loveMorelist[this.loveIndex + 2]]
       }
+    },
+    handleClick (id) {
+      // console.log(id);
+
+      this.$router.push(`/onetooneDetails/${id}`)
     }
   },
   mounted () {
     this.$store.commit('closeFootBar')
     this.$store.commit('openGiveFootBar')
-    console.log(this.$route.params.id)
+    // console.log(this.$route.params.id)
     axios.get(`/cgi-bin/ProjInfoQuery.fcgi?type=proj&id=${this.$route.params.id}`)
       .then(res => {
-        // console.log(res.data.msg);
+        console.log(this.$route.params.id)
+        console.log(res.data.msg)
 
         this.allInfo = res.data.msg
       })
@@ -200,14 +206,15 @@ export default {
         padding: 0 10px;
         margin-bottom: 20px;
     }
-    /* .allswiper{
+    .allswiper{
         width: 100%;
         padding: 0 10px;
         box-sizing: border-box;
-    } */
+    }
     .allswiper dl{
         height: 100px;
         background: #eee;
+        border-radius: 20px;
         padding: 10px;
         display: flex;
 
@@ -303,20 +310,28 @@ export default {
         margin-right: 20px;
         float: left;
     }
-    .successZyk section{
-        overflow:hidden;
-        text-overflow:ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
+    .successZyk p{
+      line-height: 26px;
     }
-    .successZyk section h3,.successZyk section img{
+    .successZyk section{
+      margin-bottom: 20px;
+    }
+    .successZyk section h3,.successZyk section img,.successZyk section p{
         display: none;
+    }
+    .successZyk section p:nth-of-type(2){
+      font-size: 12px;
+      display: block;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
     .loveZyk{
         padding: 20px 0;
         background: #fff;
-        margin-bottom: 20px;
+        margin-bottom: 100px;
     }
     .loveZyk h3{
         border-left: 6px solid orangered;
@@ -337,6 +352,9 @@ export default {
     }
     .loveZyk strong{
         color: orangered;
+    }
+    .loveZyk p{
+      font-size: 12px;
     }
     .loveZyk span{
         text-align: center;
